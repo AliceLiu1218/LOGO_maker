@@ -1,5 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
+const logo_file = require('./utils/generatelogo');
 // TODO: Create an array of questions for user input
 const questions = [{
     type: 'input',
@@ -30,7 +32,11 @@ const questions = [{
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, JSON.stringify(data, null, '\t'), (err) =>
+        err ? console.log(err) : console.log('Write file Success!')
+    );
+}
 
 // TODO: Create a function to initialize app
 function init() {
@@ -39,8 +45,8 @@ function init() {
         .then((data) => {
             console.log("Information was saved successfully!!")
             console.log(data);
-            // const filename = `${data.project_title}.md`;
-            // writeToFile(filename, data)
+            const filename = `${data.file_name}.html`;
+            writeToFile(filename, data)
            
           })
 }
