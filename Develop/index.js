@@ -33,7 +33,7 @@ const questions = [{
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data, null, '\t'), (err) =>
+    fs.writeFile(fileName, data, (err) =>
         err ? console.log(err) : console.log('Write file Success!')
     );
 }
@@ -46,7 +46,7 @@ function init() {
             console.log("Information was saved successfully!!")
             console.log(data);
             const filename = `${data.file_name}.html`;
-            writeToFile(filename, data)
+            writeToFile(filename, logo_file.htmlContent)
            
           })
 }
