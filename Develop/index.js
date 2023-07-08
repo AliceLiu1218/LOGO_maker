@@ -1,8 +1,11 @@
-// TODO: Include packages needed for this application
+// Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 const logo_file = require('./utils/generatelogo');
-// TODO: Create an array of questions for user input
+
+
+
+// Create an array of questions for user input
 const questions = [{
     type: 'input',
     name: 'text',
@@ -17,7 +20,7 @@ const questions = [{
     type: 'list',
     message: 'What shape do you want the logo to be?',
     name: 'shape',
-    choices: ['circle', 'rectangle', 'triangle'],
+    choices: ['circle', 'rect', 'tri'],
   },
   {
     type: 'input',
@@ -31,22 +34,47 @@ const questions = [{
   },
 ];
 
-// TODO: Create a function to write README file
+// Create a function to write logo html file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
         err ? console.log(err) : console.log('Write file Success!')
     );
 }
 
-// TODO: Create a function to initialize app
+// Funciton to process user input data
+function processDATA(shape) {
+    const htmlContent =``;
+    switch(shape) {
+        case 'circle':
+            console.log("circle shape logo should be generated");
+            htmlContent = logo_file.htmlContent_circle;
+            return htmlContent;
+            
+        case 'rect':
+            console.log("rect shape logo should be generated");
+            htmlContent = logo_file.htmlContent_rect;
+            return htmlContent;
+            
+        case 'tri':
+            console.log("tri shape logo should be generated");
+            htmlContent = logo_file.htmlContent_tri;
+            return htmlContent;
+            
+    }
+}
+
+// Create a function to initialize app
 function init() {
     inquirer
         .prompt(questions)
         .then((data) => {
             console.log("Information was saved successfully!!")
             console.log(data);
+            const shape = data.shape;
+            const shape_color = data.shape_color;
+            processDATA(shape);
             const filename = `${data.file_name}.html`;
-            writeToFile(filename, logo_file.htmlContent)
+            writeToFile(filename, htmlContent)
            
           })
 }
