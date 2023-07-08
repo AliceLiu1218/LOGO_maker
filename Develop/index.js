@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const logo_file = require('./utils/generatelogo');
 
-
+let htmlContent;
 
 // Create an array of questions for user input
 const questions = [{
@@ -43,7 +43,7 @@ function writeToFile(fileName, data) {
 
 // Funciton to process user input data
 function processDATA(shape) {
-    const htmlContent =``;
+    
     switch(shape) {
         case 'circle':
             console.log("circle shape logo should be generated");
