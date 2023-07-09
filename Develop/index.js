@@ -10,6 +10,12 @@ const questions = [{
     type: 'input',
     name: 'text',
     message: 'What characters do you want for text, up to three charcaters?',
+    validate: function (input) {
+        if (input.length <= 3) {
+          return true;
+        }
+        return 'Username must not exceed 3 characters.';
+    },
   },
   {
     type: 'input',
@@ -66,8 +72,9 @@ function processDATA(shape,shape_color,text_color,text) {
 // Create a function to initialize app
 function init() {
     inquirer
-        .prompt(questions)
+        .prompt(questions) 
         .then((data) => {
+            
             console.log("Information was saved successfully!!")
             console.log(data);
             
