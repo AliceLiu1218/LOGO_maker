@@ -42,23 +42,23 @@ function writeToFile(fileName, data) {
 }
 
 // Funciton to process user input data
-function processDATA(shape) {
+function processDATA(shape,shape_color,text_color,text) {
     
     switch(shape) {
         case 'circle':
             console.log("circle shape logo should be generated");
-            htmlContent = logo_file.htmlContent_circle;
-            return htmlContent;
+            htmlContent = logo_file.circle_logo(shape_color,text_color,text);
+            break;
             
         case 'rect':
             console.log("rect shape logo should be generated");
-            htmlContent = logo_file.htmlContent_rect;
-            return htmlContent;
+            htmlContent = logo_file.rect_logo(shape_color,text_color,text);
+            break;
             
         case 'tri':
             console.log("tri shape logo should be generated");
-            htmlContent = logo_file.htmlContent_tri;
-            return htmlContent;
+            htmlContent = logo_file.tri_logo(shape_color,text_color,text);
+            break;
             
     }
 }
@@ -70,9 +70,8 @@ function init() {
         .then((data) => {
             console.log("Information was saved successfully!!")
             console.log(data);
-            const shape = data.shape;
-            const shape_color = data.shape_color;
-            processDATA(shape);
+            
+            processDATA(data.shape,data.shape_color,data.text_color,data.text);
             const filename = `${data.file_name}.html`;
             writeToFile(filename, htmlContent)
            
